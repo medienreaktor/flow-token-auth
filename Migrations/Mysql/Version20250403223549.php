@@ -40,6 +40,9 @@ final class Version20250403223549 extends AbstractMigration
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\AbstractMySQLPlatform'."
         );
 
+        $this->addSql(<<<'SQL'
+            DROP TABLE IF EXISTS flownative_tokenauthentication_security_model_hashandroles
+        SQL);
         $schema->dropTable('flownative_tokenauthentication_security_model_hashandroles');
     }
 }

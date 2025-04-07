@@ -7,7 +7,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Generate the table for the token authentication.
  */
-class Version20250403223549 extends AbstractMigration
+class Version20190626125740 extends AbstractMigration
 {
 
     /**
@@ -26,10 +26,7 @@ class Version20250403223549 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on "mysql".');
 
-        $this->addSql('ALTER TABLE flownative_tokenauthentication_security_model_hashandroles
-            MODIFY roles JSON NOT NULL COMMENT \'(DC2Type:flow_json_array)\',
-            MODIFY settings JSON NOT NULL COMMENT \'(DC2Type:flow_json_array)\'');
-
+        $this->addSql('CREATE TABLE flownative_tokenauthentication_security_model_hashandroles (hash VARCHAR(255) NOT NULL, roleshash VARCHAR(255) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json_array)\', settings LONGTEXT NOT NULL COMMENT \'(DC2Type:json_array)\', PRIMARY KEY(hash)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
     }
 
     /**
@@ -40,9 +37,7 @@ class Version20250403223549 extends AbstractMigration
     {
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != 'mysql', 'Migration can only be executed safely on "mysql".');
 
-        $this->addSql('ALTER TABLE flownative_tokenauthentication_security_model_hashandroles
-            MODIFY roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json_array)\',
-            MODIFY settings LONGTEXT NOT NULL COMMENT \'(DC2Type:json_array)\'');
+        $this->addSql('DROP TABLE flownative_tokenauthentication_security_model_hashandroles');
 
     }
 }

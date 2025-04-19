@@ -15,7 +15,7 @@ class Version20250403223549 extends AbstractMigration
      */
     public function getDescription(): string
     {
-        return '';
+        return 'Adjust table for token authentication';
     }
 
     /**

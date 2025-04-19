@@ -5,7 +5,7 @@ use Doctrine\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
 
 /**
- * Generate the table for the token authentication.
+ * Adjust table for token authentication
  */
 class Version20250403223549 extends AbstractMigration
 {
